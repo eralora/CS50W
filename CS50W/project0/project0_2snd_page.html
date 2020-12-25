@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Google image search</title>
+	<style>
+			.center1{
+				height: 200px;
+				width: 400px;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				margin-top: -80px;
+				margin-left: -300px;
+
+			}
+			.center2{
+				height: 200px;
+				width: 400px;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				margin-top: -20px;
+				margin-left: -120px;
+			}
+			.center3{
+				height: 200px;
+				width: 400px;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				margin-top: -300px;
+				margin-left: 450px;
+			}
+			input[type=text]{
+				height: 40px;
+				width: 500px;
+				border-radius: 32px;
+				box-sizing: border-box;
+				border: 2px solid #555;
+			}
+			input[type=submit]{
+			background-color: #4d90fe;
+			width: 150px;
+			height: 25px;
+			color: white;
+			border: none;
+			display: inline-block;
+			cursor: pointer;
+			margin: 4px 2px;
+			border-radius: 4px;
+			
+
+		}
+		input[type=submit]:hover{
+			box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+		}
+		</style>
+</head>
+<body style="font-family: Arial,sans-serif;">
+	<form action="https://google.com/search">
+		<div class="center1">
+			<input type="text" name="q">
+		</div>
+		<div class="center2">
+			<input type="submit" value="Google image search">
+			<input type="hidden" name="tbm" value="isch">
+		</div>
+		<div class="center3">
+			<a  href="project0_1st_page.html"> Search</a>
+			<a href="project0_3rd_page.html"> Advanced search</a>
+		</div>
+		
+	</form>
+</body>
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title >Google advanced search</title>
+	<style>
+		input[type=submit]{
+			background-color: #4d90fe;
+			width: 150px;
+			height: 25px;
+			color: white;
+			border: none;
+			display: inline-block;
+			cursor: pointer;
+			margin: 4px 2px;
+			border-radius: 4px;
+			
+
+		}
+		input[type=submit]:hover{
+			box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+		}
+		.mydiv{
+			border-radius: 5px;
+  			background-color: #f2f2f2;
+  			padding: 20px;
+		}
+		.center3{
+				height: 200px;
+				width: 400px;
+				position: fixed;
+				top: 50%;
+				left: 50%;
+				margin-top: -300px;
+				margin-left: 450px;
+			}
+	</style>
+</head>
+<body style="font-family: Arial,sans-serif;">
+	<h1 style="color: #d14836">Advanced search</h1>
+	<div class="mydiv">
+		<form action="https:/www.google.com/search">
+			<label>Find pages with...</label> <br><br>
+			
+				<label for="f1">all these words:</label>
+			<input type="text" id="f1" name="as_q"> <br><br>	
+			
+			
+		
+			<label for="f2">this exact word or phrase:</label>	
+			<input type="text" id=f2 name="as_epq"> <br><br>
+
+			<label for="f3">any of these words:</label>
+			<input type="text" id="f3" name="as_oq"> <br><br>
+			
+			<label for="f4">none of these words:</label>
+			<input type="text" id="f4" name="as_eq"> <br><br>
+		
+			<input type="submit" value="Advanced Search">
+	<div class="center3">
+		<a  href="project0_1st_page.html"> Google search</a>
+		<a href="project0_2snd_page.html"> Google Image search</a>
+	</div>
+			 
+
+		
+		</form>
+	</div>
+
+</body>
+</html>

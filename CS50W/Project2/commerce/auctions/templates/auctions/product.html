@@ -1,0 +1,168 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+{% block content %}
+
+{% if error %}
+	    <div class="alert alert-danger" role="alert">
+	        {{error}}
+	     </div>
+	    {% endif %}
+
+	    {% if errorgreen %}
+	    <div class="alert alert-success" role="alert">
+	        {{errorgreen}}
+	     </div>
+    	{% endif %}
+
+
+
+    	{% if not item.is_active%}
+    	{% if winner%}
+    		<div class="alert alert-success" role="alert">
+	        <h2> Congratulations!!! You won this bid !!!</h2>
+	     	</div>
+    		
+
+    	{% endif %}
+    	{% endif %}
+
+<div class="container">
+    <h2>Listing: {{item.title}}</h2>
+    <div class="container" style="text-align: center;">
+        <img src="{{item.imageURL}}" width="30%" alt="...">
+    </div>
+
+
+				<br>
+    <br>
+    <p><b>Description: </b>{{item.description}}</p>
+    <br>
+
+    <h3>Starting Bid:${{item.starting_bid}}</h3>
+    <br>
+				{% if user.is_authenticated %}
+				<p>
+					{% if added  %}
+
+					<a href="{%url 'remove_watchlist' item.id%}"><button class="btn btn-danger">
+					Remove from Watchlist</button></a>
+
+					{% else %}
+
+					<a href="{%url 'add_watchlist' item.id%}" class="btn btn-success">Add to Watchlist</a>
+				
+					{%endif%}
+				</p>
+				{%endif%}
+
+				
+
+		</div>
+		<br>
+		<p><b>Details:</b>
+    	<ul>
+	        <li><b>Created by: </b>{{item.creator}}</li>
+	        <li><b>Category: </b>{{item.category}}</li>
+	        {% if item.is_active%}
+				<li><b>Status: </b><span class="badge purple mr-1">Active</span></li>
+
+			{% else %}
+
+				<li><b>Status: </b><span class="badge purple mr-1">Close</span></li>
+
+			{%endif%}
+
+    	</ul>
+    	</p>
+    	<br>
+    	<div class="row">
+			<div class="col-lg-12">
+				<div class="box-element">
+					<div class="cart-row">
+						<div style="flex:2"></div>
+							<div style="flex:2"><h5>Current bid: <strong>${{current_bid.bid}}</strong>  </h5>
+							<h5>Bidded by: <strong>{{current_bid.user}}</strong> </h5></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+
+		<div>
+			
+		</div>
+		<br>
+        {% if user.is_authenticated %}
+		{% if item.is_active%}
+		<div class="container">
+        <h4>Your bid:</h4>
+        <form method="post" action="{% url 'add_bid' item.id %}">
+            {% csrf_token %}
+              <div class="form-row align-items-center">
+                <div class="col-auto">
+                  <input type="number" class="form-control mb-2" id="inlineFormInput" name="bid" placeholder="your bid...">
+                </div>
+                <div class="col-auto">
+                  <button type="submit" class="btn btn-primary mb-2">Submit</button>
+                </div>
+              </div>
+        </form>
+
+    	</div>
+		
+		<br>
+
+    <div class="container">
+      <form method="post" action="{% url 'add_comment' item.id %}">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1"><b>Write a comment:</b></label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="comment" placeholder="Write your comment here..." required></textarea>
+        </div>
+        <button class="btn btn-secondary" type="submit">Submit</button>
+      </form>
+    </div>
+    <br>
+
+    	{% else %}
+
+    	<h2> Winner is {{current_bid.user}}</h2>
+    	<h2> Final price is ${{current_bid.bid}}</h2>
+
+    	{% endif %}
+        {% endif %}
+    	<br>
+    	<br>
+    	
+    	<div>
+    		<h3>Comments: </h3>
+    		<br>
+    		{% for comment in comments%}
+
+			<div class="card mb-3" style="max-width: 540px;">
+            <div class="row no-gutters">
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="card-title">{{comment.user}}</h5>
+                  <p class="card-text">{{comment.comment}}</p>
+                
+                </div>
+              </div>
+            </div>
+          </div>
+
+			{% endfor %}
+
+		</div>
+
+		
+
+    	{% if user.is_authenticated %}
+    	{% if owner %}
+
+    		<a href="{%url 'close_bid' item.id%}"><button class="btn btn-warning">Close bid</button> </a>
+    	{% endif%}
+    	{% endif%}
+    	
+    </div>
+{% endblock content %}

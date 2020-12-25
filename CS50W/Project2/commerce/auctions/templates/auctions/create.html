@@ -1,0 +1,44 @@
+{% extends "auctions/layout.html" %}
+{% load static %}
+
+{% block title %}
+    create
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2>Create listing</h2>
+
+</div>
+<div class="container">
+    <form enctype="multipart/form-data" method="post" action="{% url 'create' %}">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="exampleFormControlInput1">Title</label>
+          {{pos.title}}
+        </div>
+        
+        <div class="form-group">
+          <label for="exampleFormControlTextarea1">Description</label>
+          {{pos.description}}
+        </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Category</label>
+            {{pos.category}}
+          </div>
+        <div class="form-group">
+            <label for="exampleFormControlInput1">Starting Bid</label>
+            {{pos.price}}
+          </div>
+        
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Image link </label>
+            {{pos.image}}
+          </div>
+
+        <button class="btn btn-outline-info" type="submit">Submit</button>
+
+      </form>
+</div>
+{% endblock content %}
+
